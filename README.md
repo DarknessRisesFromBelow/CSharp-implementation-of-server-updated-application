@@ -1,5 +1,5 @@
-# cpp-implementation-for-server-updated-application
- example of implementation of my "Server-Updated-App" project in cpp
+# c#-implementation-for-server-updated-application
+ example of implementation of my "Server-Updated-App" project in c#
 
 
 
