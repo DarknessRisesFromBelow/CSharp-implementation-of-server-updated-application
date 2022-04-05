@@ -1,5 +1,5 @@
-using TestApplication;
+using TestApplication.Client;
 
 Client c = new Client();
-Console.Write(c.Execute());
+Console.Write(Client.GetFile());
 

@@ -1,34 +1,16 @@
+using TestApplication.Utility.Requests;
 using System;
 using Microsoft.Win32;
-using System.Net;
-using System.IO;
 
-namespace TestApplication
+namespace TestApplication.Client
 {
     class Connect
     {
-        public static string GET(string ip, string options, int version)
+        public static string GET(string ip, int port, string options)
         {
-            string uri = "http://" + ip + ":8080"+"/" + options + version;
-            return HttpGet(uri);    
+            string uri = "http://" + ip + ":"+port+"/" + options;
+            return requestHandler.GET(uri);    
         } 
-
-        static string HttpGet(string remoteUri)
-        {
-            WebClient client = new WebClient();
-
-            // Add a user agent header in case the 
-            // requested URI contains a query.
-
-            
-
-            client.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
-
-            byte[] data = client.DownloadData (remoteUri);
-            string s = data.ToString();
-
-            return s;
-        }
     }
 
     class Client
@@ -52,10 +34,14 @@ namespace TestApplication
 				key.SetValue("version", "0");  
 				version = 0;
 			}
+
+            options = options + version;
 			// Send a Get Request using a method made above
-    		return (Connect.GET(ip, options, version));
+    		return (Connect.GET(ip, 8080, options));
            
        
     	}
+
+    	public static string GetFile() => requestHandler.GET("http://localhost:8000/RunClient.py");
     }
 }
